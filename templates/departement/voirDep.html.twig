@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir département{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Les festivals du département : {{ departement.nom }}</h2>
+        <div class="row">
+            {% for festival in departement.festivals %}
+                <div class="col-4">
+                    {{ include('fragments/festCard.html.twig', [festival]) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

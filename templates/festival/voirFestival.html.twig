@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Voir festival {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="col-6">
+            <h2>{{ festival.nom }}</h2>
+            <blockquote>Département: {{ festival.lieu.nom }}</blockquote>
+            <img src="{{ festival.affiche ? asset('uploads/affiches/' ~ festival.affiche) :  asset('build/images/festvialDefault.jpg') }}" class="img-fluid" alt="affiche">
+
+            <h3>Les artistes: </h3>
+            <ul class="list-group">
+                {% for artiste in festival.artistes %}
+                    <li class="list-group-item">
+                        {{ artiste.nom }} ({{ artiste.style }})
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>La fête pour la fête</h2>
+        <div class="row">
+            {% for festival in festivals %}
+                <div class="col-4">
+                    {{ include('fragments/festCard.html.twig', [festival]) }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr class="border border-primary border-3 opacity-75">
+
+        <h2>Les départements festifs</h2>
+        <ul class="list-group list-group">
+        {% for departement in departements %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ path('app_departement_voir', {'id': departement.id}) }}">{{ departement.nom }}</a>
+                    </div>
+                </div>
+                <span class="badge bg-primary rounded-pill">{{ departement.festivals.count }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

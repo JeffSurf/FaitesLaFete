@@ -1,0 +1,20 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block contenu %}
+    <div class="container">
+        <h2>{{ app.current_route == "app_admin_departement_ajouter" ? "Ajout" : "Modification" }} d'un département</h2>
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(form.nom) }}
+            </div>
+            <div class="col-6">
+                <button class="btn btn-outline-primary" type="submit">Enregistrer</button>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

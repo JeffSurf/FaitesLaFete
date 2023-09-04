@@ -1,0 +1,40 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block contenu %}
+    <div class="container mt-3">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <h2>Liste des départements</h2>
+        <a href="{{ path('app_admin_departement_ajouter') }}" class="btn btn-primary">Ajouter un département</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for departement in departements %}
+
+                <tr>
+                    <td>{{ departement.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_departement_modifier', {'id': departement.id}) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('app_admin_departement_supprimer', {'id': departement.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

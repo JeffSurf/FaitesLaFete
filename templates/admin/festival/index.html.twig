@@ -1,0 +1,48 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block contenu %}
+    <div class="container mt-3">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <h2>Liste des festivals</h2>
+        <a href="{{ path('app_admin_festival_ajouter') }}" class="btn btn-primary">Ajouter un festival</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Affiche
+                </th>
+                <th>
+                    Lieu
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for festival in festivals %}
+
+                <tr>
+                    <td>{{ festival.nom }}</td>
+                    <td>{{ festival.affiche ? asset('uploads/affiches/' ~ festival.affiche) :  asset('build/images/festvialDefault.jpg') }}</td>
+                    <td>{{ festival.lieu.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_festival_modifier', {'id': festival.id}) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('app_admin_festival_supprimer', {'id': festival.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

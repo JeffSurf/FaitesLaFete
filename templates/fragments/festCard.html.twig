@@ -1,0 +1,10 @@
+<div class="card h-100">
+    <h5 class="card-header">{{ festival.nom }}</h5>
+    <img class="card-img-top img-fluid" src="{{ festival.affiche ? asset('uploads/affiches/' ~ festival.affiche) :  asset('build/images/festvialDefault.jpg') }}" alt="affiche">
+    <div class="card-body">
+        <p class="card-text">Département: {{ festival.lieu.nom }}</p>
+        <div class="card-footer">
+            <a href="{{ path('app_festival_voir', {'id': festival.id}) }}" class="btn btn-outline-info">Info</a>
+        </div>
+    </div>
+</div>
